@@ -4,7 +4,7 @@ let readLines filePath = System.IO.File.ReadLines(filePath)
 
 let isLength len (word: string) = word.Length = len
 
-let ofLength len (words: seq<string>) = words |> Seq.filter (isLength len)
+let ofLength len words = words |> Seq.filter (isLength len)
 
 let wordList = readLines "words_alpha.txt" |> ofLength 5
 
