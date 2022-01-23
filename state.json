@@ -1,0 +1,47 @@
+{
+  "Excluded": [
+    "o",
+    "l",
+    "k",
+    "a",
+    "e",
+    "n",
+    "s"
+  ],
+  "Correct": [
+    {
+      "Letter": "c",
+      "Position": 0
+    },
+    {
+      "Letter": "r",
+      "Position": 1
+    },
+    {
+      "Letter": "i",
+      "Position": 2
+    },
+    {
+      "Letter": "p",
+      "Position": 4
+    }
+  ],
+  "Misplaced": [
+    {
+      "Letter": "p",
+      "Position": 0
+    },
+    {
+      "Letter": "r",
+      "Position": 0
+    },
+    {
+      "Letter": "i",
+      "Position": 1
+    },
+    {
+      "Letter": "p",
+      "Position": 2
+    }
+  ]
+}

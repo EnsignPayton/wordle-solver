@@ -1,6 +1,9 @@
-﻿open Wordle
+﻿open FSharp.Json
+open Wordle
 
 let readLines filePath = System.IO.File.ReadLines(filePath)
+
+let readText filePath = System.IO.File.ReadAllText(filePath)
 
 let isLength len (word: string) = word.Length = len
 
@@ -8,21 +11,9 @@ let ofLength len words = words |> Seq.filter (isLength len)
 
 let wordList = readLines "words_alpha.txt" |> ofLength 5
 
-let state =
-    { Excluded =
-        [ 'r'
-          's'
-          't'
-          'l'
-          'n'
-          'e'
-          'z'
-          'x'
-          'w' ]
-      Correct =
-        [ { Letter = 'b'; Position = 0 }
-          { Letter = 'y'; Position = 4 } ]
-      Misplaced = [ { Letter = 'u'; Position = 3 } ] }
+let stateJson = readText "state.json"
+
+let state = Json.deserialize<Wordle.BoardState> stateJson
 
 let words = solve wordList state
 
