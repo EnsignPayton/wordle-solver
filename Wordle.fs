@@ -3,9 +3,9 @@ module Wordle
 type LetterPosition = { Letter: char; Position: int }
 
 type BoardState =
-    { Excluded: list<char>
-      Correct: list<LetterPosition>
-      Misplaced: list<LetterPosition> }
+    { Excluded: char list
+      Correct: LetterPosition list
+      Misplaced: LetterPosition list }
 
 // Exclude grey letters
 let intersect a b =
@@ -13,7 +13,7 @@ let intersect a b =
 
 let noIntersection a b = intersect a b |> Set.isEmpty
 
-let hasNoLetters (letters: list<char>) (word: string) =
+let hasNoLetters (letters: char list) (word: string) =
     Seq.toList word |> noIntersection letters
 
 let excludingLetters letters words =
