@@ -1,47 +1,19 @@
 {
-  "Excluded": [
-    "o",
-    "l",
-    "k",
-    "a",
-    "e",
-    "n",
-    "s"
-  ],
+  "Excluded": [],
   "Correct": [
     {
-      "Letter": "c",
-      "Position": 0
-    },
-    {
-      "Letter": "r",
+      "Letter": "た",
       "Position": 1
     },
     {
-      "Letter": "i",
-      "Position": 2
-    },
-    {
-      "Letter": "p",
-      "Position": 4
+      "Letter": "く",
+      "Position": 3
     }
   ],
   "Misplaced": [
     {
-      "Letter": "p",
-      "Position": 0
-    },
-    {
-      "Letter": "r",
-      "Position": 0
-    },
-    {
-      "Letter": "i",
+      "Letter": "く",
       "Position": 1
-    },
-    {
-      "Letter": "p",
-      "Position": 2
     }
   ]
 }

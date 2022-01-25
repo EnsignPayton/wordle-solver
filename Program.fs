@@ -5,14 +5,25 @@ let isLength len (word: string) = word.Length = len
 
 let ofLength len words = words |> Seq.filter (isLength len)
 
-let wordList =
-    System.IO.File.ReadLines "words_alpha.txt"
-    |> ofLength 5
+module English =
+    let wordList =
+        System.IO.File.ReadLines "words_alpha.txt"
+        |> ofLength 5
 
-let stateJson = System.IO.File.ReadAllText "state.json"
+module Japanese =
+    let wordList =
+        let a = System.IO.File.ReadLines "gcanna.t"
+        let b = System.IO.File.ReadLines "gcannaf.t"
+        Seq.concat [a; b]
+        |> Seq.map (fun x -> (x.Split('#')[0]).Trim())
+        |> ofLength 4
 
-let state = Json.deserialize<Wordle.BoardState> stateJson
+// TODO: Take state in a way that doesn't get checked in.
+let state =
+    "state.json"
+    |> System.IO.File.ReadAllText
+    |> Json.deserialize<Wordle.BoardState>
 
-let words = solve wordList state
+let words = solve Japanese.wordList state
 
 words |> Seq.iter (fun x -> printfn "%s" x)
