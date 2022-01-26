@@ -1,5 +1,4 @@
-﻿open FSharp.Json
-open Wordle
+﻿open Solver
 
 let isLength len (word: string) = word.Length = len
 
@@ -14,16 +13,22 @@ module Japanese =
     let wordList =
         let a = System.IO.File.ReadLines "gcanna.t"
         let b = System.IO.File.ReadLines "gcannaf.t"
-        Seq.concat [a; b]
+
+        Seq.concat [ a; b ]
         |> Seq.map (fun x -> (x.Split('#')[0]).Trim())
         |> ofLength 4
 
-// TODO: Take state in a way that doesn't get checked in.
-let state =
-    "state.json"
-    |> System.IO.File.ReadAllText
-    |> Json.deserialize<Wordle.BoardState>
+// TODO: actually handle error cases
+let args = System.Environment.GetCommandLineArgs()
 
-let words = solve Japanese.wordList state
+let wordList =
+    match args[1] with
+    | "en" -> English.wordList
+    | "jp" -> Japanese.wordList
+    | _ -> []
+
+let state = StateParser.parse args[2]
+
+let words = solve wordList state
 
 words |> Seq.iter (fun x -> printfn "%s" x)
